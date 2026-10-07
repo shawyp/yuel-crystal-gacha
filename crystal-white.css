@@ -1,0 +1,133 @@
+body{background:#f5f6fa!important;color:#343946;--ink:#343946;--text:#343946;--green:#748197;--accent:#748197;--muted:#747b89}
+body::before,body::after{opacity:0!important}
+.view{background:transparent!important}
+.stage,.bl-stage,.bl-flower-picker,.panel,.w-content,.wish{background:linear-gradient(150deg,#fff,#f1f3f8)!important;border-color:#fff!important;box-shadow:0 18px 50px #48556b0c!important}
+.stage::before,.stage::after{opacity:.04!important}
+.nav,.dock{background:#fffffff2!important;border-color:#fff!important;color:#434c5d!important;box-shadow:0 8px 30px #414b6117!important}
+.flow-primary,#bl-brew,#fab-save{background:linear-gradient(180deg,#8895af,#677690)!important;color:#fff!important;border:1px solid #9aa7bd!important;box-shadow:inset 0 1px #ffffff66,0 5px 15px #61718f20!important}
+.is-picked{background:#f1f3f9!important;border-color:#94a1b8!important}
+.title,h1,h2{color:#353d4b!important}
+.workshop-actions{background:linear-gradient(0deg,#f6f7fa 75%,transparent)!important}
+.crystal-liquid-wrap{position:relative;isolation:isolate;width:100%;margin-top:9px}
+.crystal-liquid-wrap #auto-twist{position:relative;z-index:2;width:100%;height:50px;margin:0;border-radius:999px;background:linear-gradient(180deg,#fff,#e4e8ef)!important;color:#343d4e!important;border:1px solid #ccd3e0!important;box-shadow:0 8px 20px #60718f1f,inset 0 1px #fff!important}
+.crystal-liquid-wrap #auto-twist:focus{outline:2px solid #7486aa;outline-offset:3px}
+.crystal-liquid-stage{position:absolute;top:-40px;right:-50px;bottom:-40px;left:-50px;z-index:3;pointer-events:none}
+.crystal-liquid-stage canvas{position:absolute;top:0;left:0;width:100%;height:100%;filter:brightness(.8);mix-blend-mode:multiply;pointer-events:none}
+.mini-machine{transform-origin:50% 60%;will-change:transform}
+.stage-controls>.crystal-liquid-wrap{order:0}.stage-controls>#open-wish{order:1}
+@media(prefers-reduced-motion:reduce){.mini-machine{transform:none!important;will-change:auto}}
+#stage-canvas{mix-blend-mode:multiply}
+#mini-knob{border-color:transparent}#mini-knob:hover,#mini-knob:focus{border-color:#9babc1}
+.dock{background:transparent!important;border:0!important;box-shadow:none!important}
+.dock .seg,.dock #sound{background:rgba(255,255,255,.92)!important;border:1px solid #fff!important;box-shadow:0 8px 30px #414b6112!important}
+/* White glass: translucent surfaces, clear foreground text, a solid fallback. */
+body{background:radial-gradient(ellipse at 8% 16%,#dce6f5,transparent 46%),radial-gradient(ellipse at 95% 62%,#e8e1f3,transparent 48%),linear-gradient(150deg,#f7f9fc,#eef1f7)!important;background-attachment:fixed!important}
+.stage,.bl-stage,.bl-flower-picker,.panel,.w-content,.wish{background:rgba(255,255,255,.57)!important;border:1px solid rgba(255,255,255,.85)!important;box-shadow:inset 0 1px 0 #fff9,0 18px 48px #5d6e8c0d!important}
+.dock .seg,.dock #sound,.bl-flower,.mini-card,.flow-tray,.bl-slots,.mini-overlay>section{background:rgba(255,255,255,.52)!important;border-color:#ffffffba!important;box-shadow:inset 0 1px #ffffffb3,0 8px 24px #5466810a!important}
+.dock .seg-btn.is-on,.bl-flower.is-picked,.mini-card.is-picked{background:rgba(255,255,255,.78)!important;border-color:#a1afc9!important}
+.crystal-liquid-wrap #auto-twist{background:linear-gradient(180deg,rgba(255,255,255,.76),rgba(224,231,243,.5))!important;box-shadow:inset 0 1px #fff,0 8px 24px #60718f14!important}
+.open-wish,.chip,.bl-slot{background:rgba(255,255,255,.4)!important}
+.workshop-actions{background:linear-gradient(0deg,rgba(241,244,250,.88) 60%,rgba(241,244,250,0))!important}
+.mini-machine{transform:none!important;will-change:auto}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+ .stage,.bl-stage,.bl-flower-picker,.panel,.wish,.dock .seg,.dock #sound,.mini-overlay>section{-webkit-backdrop-filter:blur(22px) saturate(115%);backdrop-filter:blur(22px) saturate(115%)}
+ .crystal-liquid-wrap #auto-twist{-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+}
+
+/* Monochrome glass UI; original gemstones retain their own material colors. */
+body{background:radial-gradient(ellipse at 15% 20%,#fff,transparent 55%),linear-gradient(140deg,#f8f8f8,#ededed)!important;color:#414141;--ink:#414141;--text:#414141;--green:#686868;--accent:#686868;--muted:#777}
+.title,h1,h2,.dock,.seg-btn,.seg-btn.is-on{color:#414141!important}
+.flow-primary,#bl-brew,#fab-save,.crystal-liquid-wrap #auto-twist{background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(241,241,241,.72))!important;color:#424242!important;border:1px solid #fff!important;box-shadow:inset 0 1px #fff,0 5px 20px #00000012!important}
+.flow-primary:disabled,#bl-brew:disabled{color:#888!important;opacity:.72}
+.workshop-actions{background:linear-gradient(0deg,#f5f5f5df 60%,#f5f5f500)!important}
+.crystal-liquid-stage canvas{filter:grayscale(1) brightness(1.08)!important}
+.dock .seg-btn.is-on,.bl-flower.is-picked,.mini-card.is-picked,.is-picked{border-color:#a9a9a9!important}
+#mini-knob:hover,#mini-knob:focus{border-color:#aaa}
+.stage,.bl-stage,.bl-flower-picker,.panel,.w-content,.wish{box-shadow:inset 0 1px #fff9,0 18px 48px #00000009!important}
+.mini-machine{position:relative}
+#machine-live{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;touch-action:none;image-rendering:pixelated;outline-offset:-8px}
+.machine-webgl #stage-canvas{visibility:hidden;pointer-events:none}
+.machine-webgl #mini-knob{z-index:3}
+.machine-webgl #machine-hint{z-index:4;pointer-events:none}
+.machine-webgl #machine-reset{display:none!important}
+#original-pot{image-rendering:pixelated}
+.pot-webgl .pot-star{color:#fff}
+
+.single-workshop .workshop-actions #bl-brew:disabled{background:#f7f7f7!important;color:#929292!important}
+.pixel-brand,.brand-mark,.pixel-brand small,.mini-card,.mini-card small,.bl-flower,.bl-flower-label,.bl-slot,.pot-caption,#machine-hint,#sound,.open-wish,#bl-random,.w-sub,.w-bless,.w-sign{color:#626262!important;text-shadow:none!important}
+.bl-slot{border-color:#bcbcbc!important}.mini-cord{border-color:#eee!important;box-shadow:0 1px 2px #999}
+.reveal{background:rgba(242,242,242,.96)!important}.mini-overlay{background:rgba(50,50,50,.25)!important}
+button:focus,.crystal-liquid-wrap #auto-twist:focus{outline-color:#888!important}
+/* 222 / Curate my night reference: editorial typography, quiet surfaces, compact controls. */
+body{background:#f8f8f6!important;--ink:#373936;--text:#373936;--muted:#898b85}
+.view-gacha{padding:20px 18px 100px;max-width:760px}
+.stage{height:calc(100vh - 166px);min-height:590px;border:0!important;border-radius:0;background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.stage::before,.stage::after,.pixel-screen-grain{display:none!important}
+.stage-top{top:10px;left:10px;right:10px;justify-content:center}
+.pixel-brand{gap:6px}.pixel-brand b{font-family:Georgia,'Songti SC','STSong',serif;font-size:17px;letter-spacing:3px;font-weight:500}.brand-mark{font-size:20px}
+.stage-caption{top:76px;left:12px;right:12px;text-align:center}
+.stage-caption h1{font-family:Georgia,'Songti SC','STSong','Noto Serif CJK SC',serif;font-size:30px;font-weight:400;letter-spacing:.06em;line-height:1.55}
+.mini-machine{width:320px;height:374px;margin:173px auto 130px}
+#machine-hint{font-size:9px;letter-spacing:.08em;bottom:0;opacity:.75}
+.stage-bottom{bottom:14px;width:calc(100% - 24px);max-width:380px}
+.crystal-liquid-wrap #auto-twist,.flow-primary,#bl-brew,#fab-save{height:48px!important;min-height:48px;border-radius:999px!important;background:rgba(255,255,255,.8)!important;border:1px solid #d8dbd5!important;color:#41443e!important;font-size:14px!important;letter-spacing:.08em;font-weight:500!important;box-shadow:0 2px 6px #00000004!important}
+.crystal-liquid-stage{opacity:.25}
+.stage-controls #open-wish{font-size:11px;letter-spacing:.08em;color:#7c8077!important;margin-top:8px}
+.dock{bottom:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));max-width:430px;width:calc(100% - 36px)}
+.dock .seg{border-radius:20px;background:rgba(255,255,255,.72)!important;border:1px solid #dedfd9!important;box-shadow:none!important;padding:4px}
+.dock .seg-btn{border-radius:15px;font-size:9px;letter-spacing:.08em;padding:9px 0;gap:4px;color:#93958e!important}
+.dock .seg-btn.is-on{background:#f0f1ed!important;border:0!important;box-shadow:none!important;color:#373d33!important}
+.dock .seg-btn svg{width:19px;height:19px}.dock #sound{height:54px;width:54px;border:1px solid #dedfd9!important;box-shadow:none!important;background:#ffffffb8!important}.dock #sound svg{width:22px;height:22px}
+.view-bracelet,.view-collection{max-width:860px;padding:30px 22px 175px}
+.title,.view-bracelet .title,.story-intro h2,.flow-result-name,#bl-name{font-family:Georgia,'Songti SC','STSong',serif;font-weight:400!important;letter-spacing:.04em;font-size:25px!important}
+.head{margin-bottom:22px}.total{background:none;font-size:10px;letter-spacing:.1em;color:#7e8278}
+.single-workshop .bl-flower-picker{padding:16px 0!important;border:0!important;border-top:1px solid #dedfd9!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;backdrop-filter:none!important}
+.bl-picker-head h2{font-family:Georgia,'Songti SC','STSong',serif;font-size:15px;font-weight:400;letter-spacing:.06em}
+.bl-picker-head span{font-size:10px!important;color:#8d9187!important}
+.bl-flower,.mini-card{background:transparent!important;border:1px solid transparent!important;border-radius:18px!important;box-shadow:none!important}
+.bl-flower.is-picked,.mini-card.is-picked{background:#ffffffb8!important;border-color:#b6bbae!important;box-shadow:0 2px 4px #00000003!important}
+.bl-flower b,.mini-card b{font-weight:400!important;font-size:11px}.mini-card small{opacity:.6}
+.single-workshop .bl-stage{border:0!important;background:radial-gradient(ellipse,#fff 0%,#f8f8f600 70%)!important;box-shadow:none!important;border-radius:0!important;backdrop-filter:none!important}
+.single-workshop .flow-tray{background:#ffffffd9!important;border:1px solid #dedfd9!important;border-radius:18px;box-shadow:none!important;padding:7px}
+.single-workshop .flow-tray .bl-slots{background:transparent!important;border:0!important;box-shadow:none!important}
+#bl-picker-note{font-size:11px;color:#90938a;margin-top:10px}
+#bl-random{padding:7px 13px;border-radius:999px;background:#eceedf66!important;border:1px solid #e3e5df;font-size:11px}
+.workshop-actions{bottom:88px;background:linear-gradient(0deg,#f8f8f6 62%,#f8f8f600)!important;padding-top:14px}
+.wish-dialog{top:auto!important;bottom:20px!important;max-height:78vh;width:calc(100% - 24px);max-width:440px;padding:24px;background:#fafbf8f5!important;border:1px solid #fff!important;border-radius:28px;box-shadow:0 20px 80px #23251e24!important;color:#41443e}
+.wish-dialog:not([hidden]){animation:quiet-sheet .32s cubic-bezier(.2,.8,.2,1)}
+.wish-dialog .panel{background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important}
+.wish-dialog .panel>.head{background:#fafbf8!important;border-bottom:1px solid #e3e5df;padding-bottom:12px}
+.wish-dialog .chip,.story-example{background:#ffffffb8!important;border:1px solid #e2e5dc!important;color:#5e6458;border-radius:999px;box-shadow:none!important;font-size:12px}
+.wish-dialog .chip.is-on{background:#e9ece4!important;border-color:#aeb5a5!important}.manual-picker summary{font-size:12px;color:#808578}.flow-demo{border-top:1px solid #e3e5df;padding-top:14px;margin-top:18px}.flow-demo summary{font-size:12px;color:#808578}
+body.modal-open:before{background:rgba(46,50,39,.16);opacity:1!important}
+.wish{border:1px solid #e1e4db!important;background:#fafbf8f5!important;border-radius:24px;box-shadow:0 18px 70px #24271f0d!important}.flow-result-name{margin:15px 0;text-align:center}.w-total{font-family:Georgia,'Songti SC','STSong',serif;line-height:1.8}
+.view.is-active .stage-caption,.view.is-active>.head,.reveal.is-open .flow-result-name{animation:quiet-enter .5s ease both}
+button{transition:background .2s,opacity .2s,box-shadow .2s}button:active{opacity:.65}
+@keyframes quiet-enter{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@keyframes quiet-sheet{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:360px){.view-gacha{padding:14px 12px 96px}.stage-caption{top:63px}.stage-caption h1{font-size:27px}.mini-machine{width:280px;height:327px;margin-top:165px}.stage{min-height:565px}.stage-bottom{bottom:10px}.view-bracelet,.view-collection{padding-left:16px;padding-right:16px}}
+@media(min-width:900px){.view-gacha{max-width:740px}.stage{max-height:850px}.mini-machine{width:355px;height:414px;margin-top:175px}}
+@media(prefers-reduced-motion:reduce){.view.is-active .stage-caption,.view.is-active>.head,.reveal.is-open .flow-result-name,.wish-dialog:not([hidden]){animation:none}button{transition:none}}
+.wish-dialog .manual-picker .chip.is-on{color:#3f453a!important;background:#e9ece4!important}.pixel-spark{background:#eeefeb!important;color:#747a6e!important;text-shadow:none}
+/* The crystal exits first; its small keepsake card opens beside it. */
+.reveal{padding:20px 16px;background:rgba(248,248,246,.65)!important;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+.reveal .reveal-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-gap:18px;width:620px;max-width:100%;align-items:center}
+.reveal .reveal-ball{width:100%;height:280px;margin:0;overflow:visible;grid-column:1;grid-row:1;filter:drop-shadow(0 18px 14px #7e658e26)}
+.reveal .reveal-ball img{width:100%;height:100%;object-fit:contain;image-rendering:pixelated}
+.reveal #wish{grid-column:2;grid-row:1;width:100%;min-width:0;padding:23px 20px;border-radius:20px;transform:none;box-sizing:border-box}
+.reveal .flow-result-name{font-size:23px!important;line-height:1.4;margin:0 0 15px;text-align:left;animation:none!important}
+.reveal .wish-origin{text-align:left;font-size:9px;line-height:1.5;color:#96998f}
+.reveal .w-total{text-align:left;margin:12px 0}.reveal .w-total>span{font-size:16px;line-height:1.8}
+.reveal .w-song{background:transparent;border:0;border-top:1px solid #e3e4df;padding:12px 0 0;border-radius:0}.reveal .ws-text b{font-size:10px}
+.reveal .fabs{grid-column:1 / -1;grid-row:2;width:100%;max-width:360px;justify-self:center;margin:5px 0 0}
+.reveal #fab-save em{color:#41443e!important;font-weight:500}.reveal .fabs #use-crystal{color:#41443e!important;background:#ffffffdd!important;border:1px solid #d8dbd5}
+.reveal .fabs .fab{background:#ffffffb8;color:#63695b}
+.reveal.is-ejecting{animation:reveal-atmosphere 1.05s both}
+.reveal.is-ejecting .reveal-ball{animation:crystal-eject 1s cubic-bezier(.2,.75,.28,1) both}
+.reveal.is-ejecting #wish,.reveal.is-ejecting .fabs{animation:card-unfold .42s .65s both;transform-origin:left center}
+@keyframes crystal-eject{0%{opacity:0;transform:translate(var(--launch-x),var(--launch-y)) scale(.1) rotate(-32deg)}8%{opacity:1;transform:translate(var(--launch-x),var(--launch-y)) scale(.18) rotate(-24deg)}56%{opacity:1;transform:translate(10px,-50px) scale(.95) rotate(12deg)}78%{transform:translate(0,8px) scale(1.06,.94) rotate(-4deg)}92%{transform:translate(0,-5px) scale(.99,1.02) rotate(1deg)}100%{opacity:1;transform:translate(0,0) scale(1) rotate(0)}}
+@keyframes card-unfold{from{opacity:0;transform:translateX(-14px) scale(.94)}to{opacity:1;transform:translateX(0) scale(1)}}
+@keyframes reveal-atmosphere{0%,25%{background:transparent;backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0)}100%{backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}}
+@media(max-width:600px){.reveal .reveal-inner{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);grid-gap:12px}.reveal .reveal-ball{height:190px}.reveal #wish{padding:18px 14px}.reveal .flow-result-name{font-size:19px!important}.reveal .w-total>span{font-size:14px}.reveal .ws-icon{display:none}.reveal .fabs{margin-top:16px}.reveal .wish-origin{font-size:8px}}
+@media(prefers-reduced-motion:reduce){.reveal.is-ejecting,.reveal.is-ejecting .reveal-ball,.reveal.is-ejecting #wish,.reveal.is-ejecting .fabs{animation:none!important}}
+.reveal .reveal-inner{width:calc(100vw - 32px);max-width:620px;min-width:0}.reveal #wish{overflow-wrap:break-word}.reveal .w-total>span{white-space:normal}

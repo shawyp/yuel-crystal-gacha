@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>许愿球</title>
+
+<meta name="description" content="说说你今天怎么了，把一句只写给你的祝福，收进一颗水晶。">
+<link rel="stylesheet" href="./styles.css">
+<link rel="stylesheet" href="./pixel-ui.css">
+
+<link rel="stylesheet" href="./mini.css"><link rel="stylesheet" href="./crystal-white.css"></head>
+<body>
+
+
+
+<!-- ============ 扭蛋页 ============ -->
+<main class="view view-gacha is-active" id="view-gacha">
+  <div role="dialog" aria-modal="true" hidden class="wish-dialog" id="wish-dialog" aria-labelledby="dialog-title">
+  <section class="panel">
+    <header class="head">
+      <div class="dialog-person"><span class="pixel-spark" aria-hidden="true">✦</span><div><b id="dialog-title">给今天的你</b><small>一颗水晶，一封小小的回信</small></div></div>
+      <button class="dialog-close" id="close-wish" type="button" aria-label="收起对话">×</button>
+    </header>
+    <div class="story-intro">
+      <div class="story-eyebrow"><span>TODAY'S LITTLE NOTE</span><span class="ai-mode" id="ai-mode">连接中</span></div>
+      <h2>说说你今天怎么了<span>。</span></h2>
+      <p class="lede">不必先给心情起名字。我在这里听。</p>
+    </div>
+
+    <form id="story-form" class="story-form">
+      <label class="sr-only" for="story-input">说说你今天怎么了</label>
+      <div class="story-field">
+        <textarea id="story-input" rows="4" maxlength="300" minlength="2" required placeholder="比如：加班到十点，项目还被打回了" aria-describedby="story-privacy story-count"></textarea>
+        <span id="story-count">0 / 300</span>
+      </div>
+      <div class="story-examples" id="story-examples" aria-label="试一句示例"></div>
+      <button class="story-submit" id="story-submit" type="submit" disabled><span id="story-submit-text">为今天选一颗</span><span class="submit-arrow" aria-hidden="true">↗</span></button>
+      <button class="story-cancel" id="story-cancel" type="button" hidden>停止等待</button>
+      <p class="story-privacy" id="story-privacy">正在确认是否可以实时生成…</p>
+      <p class="story-status" id="story-status" role="status" aria-live="polite" hidden></p>
+    </form>
+
+    <section class="story-response" id="story-response" aria-live="polite" hidden>
+      <p id="response-copy"></p><strong id="response-question"></strong>
+    </section>
+
+    <section class="recommendation" id="recommendation" aria-live="polite" hidden>
+      <p class="recommendation-source" id="recommendation-source"></p>
+      <h3 id="recommended-feeling"></h3>
+      <p class="recommended-reflection" id="recommended-reflection"></p>
+      <div class="recommended-bead"><img id="recommended-image" alt=""><div><b id="recommended-name"></b><small id="recommended-subtitle"></small></div></div>
+      <p class="recommended-reason" id="recommended-reason"></p>
+      <div class="recommendation-actions"><button class="recommendation-twist" id="recommendation-twist">就这颗，拧出来 <span aria-hidden="true">↻</span></button><button id="recommendation-adjust">不太像我</button></div>
+      <div class="tone-adjust" id="tone-adjust" hidden><p>你更想得到哪种感觉？以你说的为准。</p><div id="tone-options"></div></div>
+      <div class="recommendation-footer"><span id="recommendation-hint"></span><button id="recommendation-another">换一颗</button></div>
+    </section>
+
+  </section>
+  </div>
+
+  <section class="stage" id="stage">
+    <div class="mini-machine"><img id="stage-canvas" src="./assets/rotation/orbit-00.webp" alt="像素水晶扭蛋机" draggable="false" tabindex="0" role="slider" aria-label="左右拖动机身旋转，方向键调整角度，回车扭出水晶" aria-valuemin="0" aria-valuemax="350" aria-valuenow="0"><button id="mini-knob" aria-label="顺时针拧一圈，或点击扭出水晶" type="button"></button><p id="machine-hint">左右拖动看机身 · 拧旋钮出珠</p><button id="machine-reset" type="button">回到正面 ↺</button></div>
+    <div class="pixel-screen-grain" aria-hidden="true"></div>
+    <header class="stage-top">
+      <div class="pixel-brand"><span class="brand-mark" aria-hidden="true">✦</span><div><b>许愿球</b><small>今天也要好好的</small></div></div>
+      <div class="stage-tools"><span class="pill-count" id="count">球内 31 颗</span><button class="icon-btn" id="sound-top" aria-label="关闭机器音效" aria-pressed="true" title="机器音效"><svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="sfx-on" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="sfx-off" d="M16 9.5l5 5M21 9.5l-5 5"/></svg></button></div>
+    </header>
+    <div class="stage-caption"><span>A LITTLE LUCK, JUST FOR YOU</span><h1>把今天的心事，<br>变成一颗小水晶。</h1><p>慢一点。在这里，给自己留一会儿。</p></div>
+    <div class="pixel-coordinate" aria-hidden="true">DAYDREAM<br>GARDEN / 01</div>
+    <details class="manual-picker stage-picker">
+    <summary><span class="picker-dot" aria-hidden="true"></span>自己挑一种心情 <span aria-hidden="true">＋</span></summary>
+    <nav class="chips" id="chips" aria-label="心情"></nav>
+
+    <article class="mood-card" id="mood-card">
+      <div class="mc-orb" id="mc-orb"></div>
+      <div class="mc-body">
+        <div class="mc-kicker" id="mc-kicker">全部心情</div>
+        <div class="mc-title" id="mc-title">随机一颗</div>
+        <div class="mc-sub" id="mc-sub">六种心情混在一起，交给运气</div>
+      </div>
+      <button class="mc-play" id="mc-play" aria-label="试听">
+        <svg viewBox="0 0 24 24" class="i-play"><path d="M8 5.5v13l11-6.5z"/></svg>
+        <svg viewBox="0 0 24 24" class="i-pause"><path d="M8 5h3v14H8zM13 5h3v14h-3z"/></svg>
+      </button>
+    </article>
+    </details>
+
+    <div class="knob-ring" id="knob-ring" aria-hidden="true">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" class="kr-track"/>
+        <circle cx="50" cy="50" r="46" class="kr-fill" id="kr-fill"/>
+      </svg>
+      <span class="kr-hint">↻ 拧一圈</span>
+    </div>
+    <button class="tray-tip" id="tray-tip">点开你的水晶 ✦</button>
+    <div class="stage-bottom"><div class="stage-invitation"><span class="invitation-dot"></span>今天，想从哪里说起？</div><div class="stage-controls"><button class="open-wish" id="open-wish" aria-haspopup="dialog" aria-controls="wish-dialog" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-8 8H5l-3 2v-10a9 9 0 0 1 18 0Z"/><path d="M7 10h8M7 14h5"/></svg><span>说说你今天怎么了</span><span class="open-wish-arrow" aria-hidden="true">↗</span></button><button class="pill-auto" id="auto-twist">随手扭一颗 <span aria-hidden="true">↻</span></button></div><p>31 颗水晶 · 6 种心情 · 收藏一份今日心意</p></div>
+    <div class="loading" id="loading">正在把水晶装进球里…</div>
+  </section>
+</main>
+
+<!-- ============ 手链工坊 ============ -->
+<main class="view view-bracelet" id="view-bracelet" aria-hidden="true">
+  <header class="head">
+    <h1 class="title">手链工坊</h1>
+    <span class="total" id="bl-count">0 / 5</span>
+  </header>
+  <p class="lede bl-lede">挑 5 颗原创水晶，配上 1 朵花，合成只属于你的手串。</p>
+
+  <section class="bl-flower-picker" aria-label="选择手串的花">
+    <div class="bl-picker-head"><h2>让花做主角</h2><span id="bl-flower-current"></span></div>
+    <p>左右滑动，挑一朵喜欢的花。</p>
+    <div class="bl-flowers" id="bl-flowers" aria-label="花型"></div>
+  </section>
+
+  <section class="bl-stage">
+    <div id="mini-bracelet" aria-label="手链平面合成预览"><span class="mini-cord"></span><div id="mini-parts"></div></div><div class="mini-pot" aria-hidden="true"><i class="pot-shadow"></i><i class="pot-handle pot-left"></i><i class="pot-handle pot-right"></i><i class="pot-body"></i><i class="pot-rim"></i><div id="pot-beads"></div><span class="pot-star">✦</span><i class="pot-spark spark-one">✧</i><i class="pot-spark spark-two">✦</i></div><p class="pot-caption" id="pot-caption">挑 5 颗水晶，装进今天的小魔法</p>
+    <div class="bl-slots" id="bl-slots" aria-label="已选的 5 颗水晶"></div>
+    <button class="bl-brew" id="bl-brew" type="button" disabled>放进锅里合成</button>
+  </section>
+
+  <section class="bl-result" id="bl-result" hidden aria-live="polite">
+    <div class="bl-result-head"><small id="bl-no">BR-000000</small><h2 id="bl-name">你的手链</h2></div>
+    <ol class="bl-beads" id="bl-beads"></ol>
+    <p class="bl-spec" id="bl-spec"></p>
+    <div class="bl-sizes" id="bl-sizes" role="radiogroup" aria-label="手围"></div>
+    <p class="bl-price" id="bl-price"></p>
+    <div class="bl-actions">
+      <button class="bl-order" id="bl-order" type="button">查看订单信息</button>
+      <button class="bl-again" id="bl-again" type="button">重新挑</button>
+    </div>
+    <p class="bl-hint" id="bl-hint"></p>
+  </section>
+
+  <section class="bl-picker" id="bl-picker">
+    <div class="bl-picker-head"><h2>挑水晶</h2><button type="button" class="bl-random" id="bl-random">随机填满</button></div>
+    <p class="catalog-note" id="bl-picker-note">收藏过的水晶排在前面 · 点一下放进空位，点空位里的水晶可以拿出来</p>
+    <div class="bl-grid" id="bl-grid"></div>
+  </section>
+</main>
+
+<!-- ============ 收藏页 ============ -->
+<main class="view view-collection" id="view-collection" aria-hidden="true">
+  <header class="head">
+    <h1 class="title">收藏</h1>
+    <span class="total" id="total">0 颗</span>
+  </header>
+  <nav class="chips" id="chips-col" aria-label="筛选"></nav>
+  <section id="saved-wishes-section" class="saved-wishes-section" hidden><h2>给自己的回信</h2><p>同一颗水晶，也可以装下不同的一天。</p><div id="saved-wishes" class="saved-wishes"></div></section>
+  <p class="catalog-note">31 颗单珠图鉴 · 点击查看，扭到后收进收藏</p>
+  <div class="folders" id="folders"></div>
+</main>
+
+<!-- ============ 底部浮动栏 ============ -->
+<div class="dock">
+  <nav class="seg glass" aria-label="页面">
+    <button class="seg-btn is-on" data-go="gacha" aria-current="page">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M7 15.5h10l1 4.5H6z"/><circle cx="12" cy="9" r="1.6"/></svg>
+      <span>扭蛋</span>
+    </button>
+    <button class="seg-btn" data-go="bracelet">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="4.5" r="2.2"/><circle cx="18.5" cy="15.8" r="2.2"/><circle cx="5.5" cy="15.8" r="2.2"/></svg>
+      <span>手链</span>
+    </button>
+    <button class="seg-btn" data-go="collection">
+      <svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/></svg>
+      <span>收藏</span>
+    </button>
+  </nav>
+  <button class="orb-btn glass" id="sound" aria-label="播放音乐" title="音乐">
+    <span class="eq"><i></i><i></i><i></i><i></i></span>
+    <svg viewBox="0 0 24 24" class="note"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>
+  </button>
+</div>
+
+<!-- ============ 开出水晶 ============ -->
+<div class="reveal" id="reveal" aria-hidden="true">
+  <div class="reveal-inner">
+    <article class="wish" id="wish">
+      <div class="w-row w-head">
+        <span class="w-brand">WISH</span><span class="w-no" id="w-no">No.0001</span>
+        <span class="w-date" id="w-date">DATE</span>
+      </div>
+      <div class="w-meta">
+        <div><b>FROM</b><span>许愿球</span><span id="w-mood-line">梦境 · Dreamy</span></div>
+        <div><b>TO</b><span>今天的你</span><span id="w-stone-line">紫水晶</span></div>
+      </div>
+      <div class="w-model"><img id="model-fallback" alt=""><span class="w-drag" id="model-status">渲染图预览</span></div>
+      <table class="w-table">
+        <thead><tr><th>MOOD</th><th>STONE</th><th>SONG</th><th>BPM</th></tr></thead>
+        <tbody><tr><td id="t-mood"></td><td id="t-stone"></td><td id="t-song"></td><td id="t-bpm"></td></tr></tbody>
+      </table>
+      <div class="wish-origin" id="wish-origin">写给今天的你</div>
+      <div class="w-total"><b>FOR YOU</b><span id="w-wish"></span></div>
+      <p class="wish-reflection" id="wish-reflection" hidden></p>
+      <p class="saved-story" id="saved-story" hidden></p>
+      <div class="wish-extras"><label id="remember-story-row" hidden><input type="checkbox" id="remember-story"> 收下时，也保留我写的那句话</label><button id="wish-copy">查看祝福</button></div>
+      <button class="w-song" id="w-song">
+        <span class="ws-icon">
+          <svg viewBox="0 0 24 24" class="i-play"><path d="M8 5.5v13l11-6.5z"/></svg>
+          <svg viewBox="0 0 24 24" class="i-pause"><path d="M8 5h3v14H8zM13 5h3v14h-3z"/></svg>
+        </span>
+        <span class="ws-text"><b id="ws-title"></b><small id="ws-sub"></small></span>
+        <span class="eq"><i></i><i></i><i></i><i></i></span>
+      </button>
+      <div class="w-name" id="w-bead-name">水晶单珠</div><div class="w-bead-id" id="w-bead-id"></div>
+    </article>
+
+    <div class="fabs" id="fabs">
+      <button class="fab" id="fab-share" aria-label="保存心情卡"><svg viewBox="0 0 24 24"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></svg><em>心情卡</em></button>
+      <button class="fab" id="fab-again" aria-label="再扭一颗"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2M14 11v6M11 14h6"/></svg><em>再扭一颗</em></button>
+      <button class="fab" id="fab-save" aria-label="收下"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 11v6M9 14l3 3 3-3"/></svg><em>收下</em></button>
+      <button class="fab" id="fab-back" aria-label="放回"><svg viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg><em>放回</em></button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+
+
+
+
+<div id="text-overlay" class="mini-overlay" hidden><section><button id="text-close" aria-label="关闭">×</button><h2 id="text-title"></h2><textarea id="text-value" readonly rows="8" aria-label="内容"></textarea><p>选中文字，可使用系统提供的复制操作。</p></section></div><script src="./data.js"></script><script src="./shop.js"></script><script src="./mini.js"></script><script src="./crystal-ui.js"></script><script src="./original-bead-geometry.js"></script><script src="./original-pot.js"></script></body>
+</html>
